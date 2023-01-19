@@ -1,4 +1,4 @@
-CREATE TABLE coder (
+CREATE TABLE IF NOT EXISTS coder (
     id INTEGER PRIMARY KEY NOT NULL,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
@@ -12,3 +12,8 @@ VALUES ("Kestutis", "Januskevicius", "kestas@midonow.fi", 39, 25);
 INSERT INTO coder (first_name, last_name, email, age, experience)
 VALUES ("Emilija", "Grybaite", "emi@midonow.fi", 19, 2);
 SELECT * FROM coder;
+
+DROP TABLE coder;
+ALTER TABLE coder ADD COLUMN project_id INTEGER;
+ALTER TABLE coder ADD COLUMN teams_id INTEGER;
+ALTER TABLE coder RENAME COLUMN teams_id TO team_id;
