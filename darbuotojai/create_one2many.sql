@@ -20,6 +20,22 @@ CREATE TABLE tasks (
     FOREIGN KEY (coder_id) REFERENCES coders (id)
 );
 
+CREATE TABLE skills (
+    id INTEGER PRIMARY KEY NOT NULL,
+    name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE coders_skills (
+    coder_id INTEGER,
+    skill_id INTEGER,
+    FOREIGN KEY (coder_id) REFERENCES coders (id),
+    FOREIGN KEY (skill_id) REFERENCES skills (id)
+);
+
+SELECT f_name, skills.name FROM coders 
+    JOIN coders_skills ON coder_id = coders.id
+    JOIN skills ON skill_id = skills.id;
+
 INSERT INTO "teams" ("name") VALUES ('Back End');
 INSERT INTO "teams" ("name") VALUES ('DevOps');
 INSERT INTO "teams" ("name") VALUES ('Front End');
@@ -48,3 +64,23 @@ INSERT INTO "tasks" ("name", "coder_id") VALUES ('Perdaryti API', '4');
 SELECT tasks.name as task, f_name as coder, teams.name as team FROM tasks 
     JOIN coders ON coder_id = coders.id
     JOIN teams ON team_id = teams.id;
+
+INSERT INTO "skills" ("name") VALUES ('Python');
+INSERT INTO "skills" ("name") VALUES ('JS');
+INSERT INTO "skills" ("name") VALUES ('CSS');
+INSERT INTO "skills" ("name") VALUES ('Go');
+INSERT INTO "skills" ("name") VALUES ('AWS');
+INSERT INTO "skills" ("name") VALUES ('Linux');
+
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('1', '2');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('1', '3');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('2', '2');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('2', '3');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('3', '1');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('3', '4');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('4', '1');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('4', '6');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('5', '4');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('5', '5');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('6', '5');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('6', '6');
