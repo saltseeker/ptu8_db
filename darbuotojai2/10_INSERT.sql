@@ -1,0 +1,2 @@
+--Įterpkite į lentelę “DARBUOTOJAI” naują darbuotoją, užpildydami visus reikiamus laukus (vardą, pavardę, gimimo datą, pareigas ir skyriaus pavadinimą).
+INSERT INTO DARBUOTOJAI VALUES ("Jaunius", "Šindeikis", "1988-03-12", "Komandos vadovas", "Gamybos")

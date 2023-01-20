@@ -1,0 +1,2 @@
+--Išrinkite skirtingas reikšmes iš stulpelio SKYRIUS_PAVADINIMAS - lentelėje “DARBUOTOJAI”.
+SELECT DISTINCT SKYRIUS_PAVADINIMAS FROM DARBUOTOJAI

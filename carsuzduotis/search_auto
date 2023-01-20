@@ -1,0 +1,14 @@
+import sqlite3
+
+conn = sqlite3.connect('carsuzduotis/cars1.db')
+c = conn.cursor()
+
+
+make = input("Enter the car's make: ")
+model = input("Enter the car's model: ")
+color = input("Enter the car's color: ")
+year = input("Enter the car's year: ")
+price = input("Enter the car's price: ")
+
+c.execute("INSERT INTO cars1 (MAKE, MODEL, COLOR, YEAR, PRICE) VALUES (?, ?, ?, ?, ?)", (make, model, color, year, price))
+conn.commit()
