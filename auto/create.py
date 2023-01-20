@@ -34,41 +34,38 @@ while True:
         print("Sekmingai ivesti duomenys")
 
     if choice == "2":
-        while True:
-            paieska_marke = input("Iveskite marke: ")
-            paieska_modelis = input("Iveskite modeli: ")
-            paieska_spalva = input("Iveskite spalva: ")
-            paieska_metai_nuo = input("Iveskite metus nuo: ")
-            paieska_metai_iki = input("Iveskite metus iki: ")
-            paieska_kaina_nuo = input("Iveskite kaina nuo: ")
-            paieska_kaina_iki = input("Iveskite kaina iki: ")
-            paieska_marke = f"%{paieska_marke}%"
-            paieska_modelis = f"%{paieska_modelis}%"
-            paieska_spalva = f"%{paieska_spalva}%"
-            select = "SELECT * FROM auto WHERE marke LIKE ? AND modelis LIKE ? and spalva LIKE ?"
-            args = [paieska_marke, paieska_modelis, paieska_spalva]
-            if paieska_metai_nuo:
-                select += " AND pagaminimo_metai >= ?"
-                args.append(paieska_metai_nuo)
-            if paieska_metai_iki:
-                select += " AND pagaminimo_metai <= ?"
-                args.append(paieska_metai_iki)
-            if paieska_kaina_nuo:
-                select += " AND kaina >= ?"
-                args.append(paieska_kaina_nuo)
-            if paieska_kaina_iki:
-                select += " AND kaina <= ?"
-                args.append(paieska_kaina_iki)
-           
-        
-            with conn:
-                c.execute(select,args)
-                while True:
-                    auto = c.fetchone()
-                    if auto:
-                        print(auto)
-                    else:
-                        print("tik tiek")
-                        break
+        paieska_marke = input("Iveskite marke: ")
+        paieska_modelis = input("Iveskite modeli: ")
+        paieska_spalva = input("Iveskite spalva: ")
+        paieska_metai_nuo = input("Iveskite metus nuo: ")
+        paieska_metai_iki = input("Iveskite metus iki: ")
+        paieska_kaina_nuo = input("Iveskite kaina nuo: ")
+        paieska_kaina_iki = input("Iveskite kaina iki: ")
+        paieska_marke = f"%{paieska_marke}%"
+        paieska_modelis = f"%{paieska_modelis}%"
+        paieska_spalva = f"%{paieska_spalva}%"
+        select = "SELECT * FROM auto WHERE marke LIKE ? AND modelis LIKE ? and spalva LIKE ?"
+        args = [paieska_marke, paieska_modelis, paieska_spalva]
+        if paieska_metai_nuo:
+            select += " AND pagaminimo_metai >= ?"
+            args.append(paieska_metai_nuo)
+        if paieska_metai_iki:
+            select += " AND pagaminimo_metai <= ?"
+            args.append(paieska_metai_iki)
+        if paieska_kaina_nuo:
+            select += " AND kaina >= ?"
+            args.append(paieska_kaina_nuo)
+        if paieska_kaina_iki:
+            select += " AND kaina <= ?"
+            args.append(paieska_kaina_iki)
+        with conn:
+            c.execute(select,args)
+            while True:
+                auto = c.fetchone()
+                if auto:
+                    print(auto)
+                else:
+                    print("tik tiek")
+                    break
 
                     
