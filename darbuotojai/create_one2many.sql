@@ -32,9 +32,18 @@ CREATE TABLE coders_skills (
     FOREIGN KEY (skill_id) REFERENCES skills (id)
 );
 
+CREATE TABLE passwords (
+    id INTEGER PRIMARY KEY NOT NULL,
+    coder_id INTEGER UNIQUE,
+    pwd VARCHAR(200),
+    FOREIGN KEY (coder_id) REFERENCES coders (id)
+);
+
 SELECT f_name, skills.name FROM coders 
     JOIN coders_skills ON coder_id = coders.id
     JOIN skills ON skill_id = skills.id;
+
+SELECT f_name, l_name, pwd FROM coders JOIN passwords ON coder_id = coders.id;
 
 INSERT INTO "teams" ("name") VALUES ('Back End');
 INSERT INTO "teams" ("name") VALUES ('DevOps');
@@ -84,3 +93,10 @@ INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('5', '4');
 INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('5', '5');
 INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('6', '5');
 INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('6', '6');
+
+INSERT INTO "passwords" ("coder_id", "pwd") VALUES ('1', '12345');
+INSERT INTO "passwords" ("coder_id", "pwd") VALUES ('2', 'verisykret');
+INSERT INTO "passwords" ("coder_id", "pwd") VALUES ('3', 'qwerty');
+INSERT INTO "passwords" ("coder_id", "pwd") VALUES ('4', 'uauauai');
+INSERT INTO "passwords" ("coder_id", "pwd") VALUES ('5', 'slaptazodis');
+INSERT INTO "passwords" ("coder_id", "pwd") VALUES ('6', 'barzda');
