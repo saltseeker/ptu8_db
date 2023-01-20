@@ -92,7 +92,6 @@ INSERT INTO "skills" ("name") VALUES ('Go');
 INSERT INTO "skills" ("name") VALUES ('AWS');
 INSERT INTO "skills" ("name") VALUES ('Linux');
 
-
 INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('1', '2');
 INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('1', '3');
 INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('2', '2');
@@ -117,6 +116,9 @@ INSERT INTO "passwords" ("coder_id", "pwd") VALUES ('6', 'barzda');
 
 
 
+
+---------istrinti lentele ---------
+----DROP TABLE coder
 
 ---------istrinti lentele ---------
 ----DROP TABLE coder
