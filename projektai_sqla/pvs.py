@@ -43,11 +43,44 @@ def search_projects(query=session.query(Project)):
     try:
         query_price = float(search)
     except ValueError:
-        query = list_projects(query.filter(Project.name.ilike(f"%{search}%")))
+        query = query.filter(Project.name.ilike(f"%{search}%"))
     else:
-        query = list_projects(query.filter(Project.price >= query_price))
+        query = query.filter(Project.price >= query_price)
     finally:
-        search_projects(query or session.query(Project))
+        list_projects(query)
+        if len(query.all()) > 0:
+            search_projects(query)
+        else:
+            search_projects()
+
+def delete_project(project):
+    print(f"Deleting project {project.id}...")
+    session.delete(project)
+
+def get_project_by_id():
+    list_projects()
+    try:
+        id = int(input("Enter project ID: "))
+    except ValueError:
+        print("Error: ID must be a number")
+    else:
+        return session.query(Project).get(id)
+
+def update_project(project, changes):
+    for column, value in changes.items():
+        if value:
+            setattr(project, column, value)
+    session.commit()
+    print(project)
+
+def collect_changes(project):
+    print(project)
+    print("Enter new values or nothing to leave existing.")
+    changes = {
+        "name": input("Name: "),
+        "price": input("Price: "),
+    }
+    return changes
 
 while True:
     choice = user_choice_menu()
@@ -58,5 +91,10 @@ while True:
     elif choice == "2":
         list_projects()
         search_projects()
+    elif choice == "3":
+        project = get_project_by_id()
+        update_project(project, collect_changes(project))
+    elif choice == "4":
+        delete_project(get_project_by_id())
     else:
         print(f"Error: wrong choice {choice}")
