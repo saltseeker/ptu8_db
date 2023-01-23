@@ -56,6 +56,7 @@ def search_projects(query=session.query(Project)):
 def delete_project(project):
     print(f"Deleting project {project.id}...")
     session.delete(project)
+    session.commit()
 
 def get_project_by_id():
     list_projects()
@@ -66,7 +67,7 @@ def get_project_by_id():
     else:
         return session.query(Project).get(id)
 
-def update_project(project, changes):
+def update_project(project, **changes):
     for column, value in changes.items():
         if value:
             setattr(project, column, value)
@@ -93,7 +94,7 @@ while True:
         search_projects()
     elif choice == "3":
         project = get_project_by_id()
-        update_project(project, collect_changes(project))
+        update_project(project, **collect_changes(project))
     elif choice == "4":
         delete_project(get_project_by_id())
     else:
