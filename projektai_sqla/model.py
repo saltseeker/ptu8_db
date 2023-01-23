@@ -21,7 +21,7 @@ class Project(Base):
         return f"({self.id}, {self.name}, {self.price}, {self.created_at})"
 
     def __str__(self):
-        return f"Projektas {self.name} su ID {self.id}, kainuojantis {self.price}, sukurtas {self.created_at}"
+        return f"ID {self.id}: {self.name}, kainuojantis {self.price}, sukurtas {self.created_at}"
 
 
 if __name__ == '__main__':
