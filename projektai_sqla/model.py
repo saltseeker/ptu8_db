@@ -8,11 +8,11 @@ Base = declarative_base()
 
 
 class Project(Base):
-    __tablename__= 'Projektas' #galima nurodyti, bet jei nenurodyta - bus sukurta auto pagal projecto pav.
+    __tablename__= 'Project' #galima nurodyti, bet jei nenurodyta - bus sukurta auto pagal projecto pav.
     id = Column(Integer, primary_key=True)
-    name = Column("pavadinimas", String)
-    price = Column("Kaina", Float)
-    created_at = Column('sukurta', DateTime, default=datetime.utcnow)
+    name = Column(String)
+    price = Column(Float)
+    created_at = Column(DateTime, default=datetime.utcnow)
 
 
     def __init__(self, name, price):
@@ -21,7 +21,7 @@ class Project(Base):
 
 
     def __repr__(self):
-        return f"{self.id}, {self.name}, {self.price}, {self.created_at}" 
+        return f"({self.id}, {self.name}, {self.price}, {self.created_at})" 
 
     def __str__(self):
         return f"Projektas {self.name} su ID {self.id}, kainuojantis {self.price}, sukurtas {self.created_at}"
